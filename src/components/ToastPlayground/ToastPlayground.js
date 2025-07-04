@@ -2,8 +2,9 @@ import React from 'react';
 
 import Button from '../Button';
 
-import styles from './ToastPlayground.module.css';
+import * as styles from './ToastPlayground.module.css';
 
+// eslint-disable-next-line no-unused-vars
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
