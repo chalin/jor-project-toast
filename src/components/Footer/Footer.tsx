@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as styles from './Footer.module.css';
 
-function Footer() {
+function Footer(): React.ReactElement {
   return (
     <footer className={styles.wrapper}>
       <p>

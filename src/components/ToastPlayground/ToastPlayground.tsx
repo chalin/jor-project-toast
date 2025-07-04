@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Button from '../Button';
+import Button from '../Button/Button';
 
 import * as styles from './ToastPlayground.module.css';
 
-// eslint-disable-next-line no-unused-vars
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
 
-function ToastPlayground() {
+function ToastPlayground(): React.ReactElement {
   return (
     <div className={styles.wrapper}>
       <header>

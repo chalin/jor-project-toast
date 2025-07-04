@@ -1,6 +1,8 @@
 import js from '@eslint/js';
 import globals from 'globals';
 import react from 'eslint-plugin-react';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tsparser from '@typescript-eslint/parser';
 
 export default [
   js.configs.recommended,
@@ -8,10 +10,20 @@ export default [
     ignores: ['dist/**', '.parcel-cache/**', 'node_modules/**'],
   },
   {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     plugins: {
       react,
+      '@typescript-eslint': tseslint,
     },
     languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 2022,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
       ecmaVersion: 2022,
       sourceType: 'module',
       globals: {
@@ -20,11 +32,6 @@ export default [
         React: 'readonly',
         ReactDOM: 'readonly',
         process: 'readonly',
-      },
-      parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
       },
     },
     settings: {
@@ -38,8 +45,12 @@ export default [
       'react/prop-types': 'off', // Disable prop-types for modern React
       'react/react-in-jsx-scope': 'off', // Not needed in React 17+
 
+      // TypeScript-specific rules
+      ...tseslint.configs.recommended.rules,
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+
       // General code quality
-      'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      'no-unused-vars': 'off', // Turn off base rule as it conflicts with TypeScript
       'no-console': 'warn',
       'prefer-const': 'error',
       'no-var': 'error',
@@ -51,3 +62,5 @@ export default [
     },
   },
 ];
+
+// cSpell:ignore tsparser

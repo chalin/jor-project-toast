@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Toast from '../Toast';
+import Toast from '../Toast/Toast';
 import * as styles from './ToastShelf.module.css';
 
-function ToastShelf() {
+function ToastShelf(): React.ReactElement {
   return (
     <ol className={styles.wrapper}>
       <li className={styles.toastWrapper}>
