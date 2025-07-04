@@ -2,28 +2,37 @@
   "name": "toast-component",
   "version": "0.1.0",
   "private": true,
-  "author": "Josh Comeau <me@joshwcomeau.com>",
+  "type": "module",
+  "author": "Josh Comeau <me@joshwcomeau.com>, Forked by Patrice Chalin",
   "dependencies": {
-    "eslint": "^8.49.0",
-    "eslint-config-react-app": "^7.0.1",
-    "new-component": "5.0.2",
-    "parcel": "2.12.0",
-    "parcel-reporter-static-files-copy": "1.5.2",
-    "prettier": "2.6.2",
+    "eslint": "^9.30.1",
+    "@eslint/js": "^9.30.1",
+    "globals": "^15.0.0",
+    "eslint-plugin-react": "^7.37.2",
+    "new-component": "^6.0.0",
+    "parcel": "2.15.4",
+    "parcel-reporter-static-files-copy": "1.5.3",
+    "prettier": "3.6.2",
     "process": "0.11.10",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-feather": "2.0.10",
-    "rimraf": "^5.0.1"
+    "rimraf": "^6.0.1"
   },
   "scripts": {
     "predev": "rimraf .parcel-cache dist",
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html",
-    "new-component": "new-component"
+    "lint": "eslint .",
+    "new-component": "new-component",
+    "update:packages": "npx npm-check-updates -u"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "staticFiles": {
     "staticPath": "assets"
+  },
+  "cSpell": "cSpell:ignore Comeau Chalin - ",
+  "devDependencies": {
+    "npm-check-updates": "^18.0.1"
   }
 }

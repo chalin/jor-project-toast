@@ -9,8 +9,9 @@ import {
 
 import VisuallyHidden from '../VisuallyHidden';
 
-import styles from './Toast.module.css';
+import * as styles from './Toast.module.css';
 
+// eslint-disable-next-line no-unused-vars
 const ICONS_BY_VARIANT = {
   notice: Info,
   warning: AlertTriangle,
