@@ -2,7 +2,7 @@
   "name": "toast-component",
   "version": "0.1.0",
   "private": true,
-  "author": "Josh Comeau <me@joshwcomeau.com>",
+  "author": "Josh Comeau <me@joshwcomeau.com>, Forked by Patrice Chalin",
   "dependencies": {
     "eslint": "^8.49.0",
     "eslint-config-react-app": "^7.0.1",
@@ -20,10 +20,12 @@
     "predev": "rimraf .parcel-cache dist",
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html",
-    "new-component": "new-component"
+    "new-component": "new-component",
+    "update:packages": "npx npm-check-updates -u"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "staticFiles": {
     "staticPath": "assets"
-  }
+  },
+  "cSpell": "cSpell:ignore Comeau Chalin - "
 }
