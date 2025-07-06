@@ -29,7 +29,7 @@
     "build": "parcel build public/index.html",
     "check:format": "prettier --check .",
     "check:types": "tsc --noEmit",
-    "check": "npm run check:types && npm run lint",
+    "check": "npm run check:types && npm run lint && npm run check:format",
     "dev": "parcel public/index.html",
     "fix:format": "prettier --write .",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",

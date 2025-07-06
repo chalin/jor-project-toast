@@ -14,7 +14,6 @@ import * as styles from './Toast.module.css';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
 export type Variant = (typeof VARIANT_OPTIONS)[number];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ICONS_BY_VARIANT = {
   notice: Info,
   warning: AlertTriangle,
@@ -25,13 +24,13 @@ const ICONS_BY_VARIANT = {
 interface ToastProps {
   children: React.ReactNode;
   variant?: Variant;
-  setVisible: (visible: boolean) => void;
+  handleDismiss: () => void;
 }
 
 function Toast({
   children,
   variant = 'notice',
-  setVisible,
+  handleDismiss,
 }: ToastProps): React.ReactElement {
   const Icon = ICONS_BY_VARIANT[variant];
 
@@ -41,7 +40,7 @@ function Toast({
         <Icon size={24} />
       </div>
       <div className={styles.content}>{children}</div>
-      <button className={styles.closeButton} onClick={() => setVisible(false)}>
+      <button className={styles.closeButton} onClick={handleDismiss}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>
