@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { type Variant } from '../Toast';
+import useEscapeKey from '../../hooks/useEscapeKey';
 
 export interface ToastData {
   id: string;
@@ -17,20 +18,6 @@ interface ContextType {
 const Context = React.createContext<ContextType | undefined>(undefined);
 
 const generateId = () => crypto.randomUUID();
-
-function useEscape(onEscape: () => void) {
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onEscape();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [onEscape]);
-}
-
 interface ProviderProps {
   children: React.ReactNode;
 }
@@ -54,7 +41,7 @@ export function Provider({ children }: ProviderProps): React.ReactElement {
     setToasts([]);
   }, []);
 
-  useEscape(dismissAllToasts);
+  useEscapeKey(dismissAllToasts);
 
   const value: ContextType = {
     toasts,
