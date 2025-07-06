@@ -7,7 +7,7 @@ import {
   X,
 } from 'react-feather';
 
-import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
+import VisuallyHidden from '../VisuallyHidden';
 
 import * as styles from './Toast.module.css';
 
@@ -25,10 +25,10 @@ interface ToastProps {
 }
 
 function Toast({
-  // eslint-disable @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   children,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   variant = 'notice',
-  // eslint-enable @typescript-eslint/no-unused-vars
 }: ToastProps): React.ReactElement {
   return (
     <div className={`${styles.toast} ${styles.notice}`}>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Toast from '../Toast/Toast';
+import Toast from '../Toast';
 import * as styles from './ToastShelf.module.css';
 
 function ToastShelf(): React.ReactElement {
