@@ -4,10 +4,10 @@ import Button from '../Button';
 
 import * as styles from './ToastPlayground.module.css';
 
-// eslint-disable-next-line no-unused-vars
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
 
-function ToastPlayground() {
+function ToastPlayground(): React.ReactElement {
   return (
     <div className={styles.wrapper}>
       <header>
@@ -31,9 +31,7 @@ function ToastPlayground() {
 
         <div className={styles.row}>
           <div className={styles.label}>Variant</div>
-          <div
-            className={`${styles.inputWrapper} ${styles.radioWrapper}`}
-          >
+          <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
             <label htmlFor="variant-notice">
               <input
                 id="variant-notice"
@@ -50,9 +48,7 @@ function ToastPlayground() {
 
         <div className={styles.row}>
           <div className={styles.label} />
-          <div
-            className={`${styles.inputWrapper} ${styles.radioWrapper}`}
-          >
+          <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
             <Button>Pop Toast!</Button>
           </div>
         </div>

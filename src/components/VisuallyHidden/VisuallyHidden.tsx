@@ -2,16 +2,21 @@ import React from 'react';
 
 import * as styles from './VisuallyHidden.module.css';
 
+interface VisuallyHiddenProps extends React.HTMLAttributes<HTMLSpanElement> {
+  children: React.ReactNode;
+  className?: string;
+}
+
 const VisuallyHidden = ({
   children,
   className = '',
   ...delegated
-}) => {
+}: VisuallyHiddenProps): React.ReactElement => {
   const [forceShow, setForceShow] = React.useState(false);
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
-      const handleKeyDown = (ev) => {
+      const handleKeyDown = (ev: KeyboardEvent) => {
         if (ev.key === 'Alt') {
           setForceShow(true);
         }
