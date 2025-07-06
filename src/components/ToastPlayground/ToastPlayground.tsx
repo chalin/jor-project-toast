@@ -4,10 +4,12 @@ import Button from '../Button';
 
 import * as styles from './ToastPlayground.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
 
 function ToastPlayground(): React.ReactElement {
+  const [message, setMessage] = React.useState('');
+  const [variant, setVariant] = React.useState('notice');
+
   return (
     <div className={styles.wrapper}>
       <header>
@@ -17,33 +19,17 @@ function ToastPlayground(): React.ReactElement {
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
-          <label
-            htmlFor="message"
-            className={styles.label}
-            style={{ alignSelf: 'baseline' }}
-          >
-            Message
-          </label>
-          <div className={styles.inputWrapper}>
-            <textarea id="message" className={styles.messageInput} />
-          </div>
+          <MessageInput
+            message={message}
+            setMessage={setMessage}
+          />
         </div>
 
         <div className={styles.row}>
-          <div className={styles.label}>Variant</div>
-          <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <label htmlFor="variant-notice">
-              <input
-                id="variant-notice"
-                type="radio"
-                name="variant"
-                value="notice"
-              />
-              notice
-            </label>
-
-            {/* TODO Other Variant radio buttons here */}
-          </div>
+          <VariantsInput
+            variant={variant}
+            setVariant={setVariant}
+          />
         </div>
 
         <div className={styles.row}>
@@ -54,6 +40,63 @@ function ToastPlayground(): React.ReactElement {
         </div>
       </div>
     </div>
+  );
+}
+
+function MessageInput({
+  message,
+  setMessage,
+}: {
+  message: string;
+  setMessage: (message: string) => void;
+}) {
+  return (
+    <>
+      <label
+        htmlFor="message"
+        className={styles.label}
+        style={{ alignSelf: 'baseline' }}
+      >
+        Message
+      </label>
+      <div className={styles.inputWrapper}>
+        <textarea
+          id="message"
+          className={styles.messageInput}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+      </div>
+    </>
+  );
+}
+
+function VariantsInput({
+  variant,
+  setVariant,
+}: {
+  variant: string;
+  setVariant: (variant: string) => void;
+}) {
+  return (
+    <>
+      <div className={styles.label}>Variant</div>
+      <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
+        {VARIANT_OPTIONS.map((option) => (
+          <label key={option} htmlFor={`variant-${option}`}>
+            <input
+              id={`variant-${option}`}
+              type="radio"
+              name="variant"
+              value={option}
+              checked={variant === option}
+              onChange={() => setVariant(option)}
+            />
+            {option}
+          </label>
+        ))}
+      </div>
+    </>
   );
 }
 
