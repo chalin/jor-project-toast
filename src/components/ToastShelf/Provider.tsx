@@ -18,16 +18,12 @@ const Context = React.createContext<ContextType | undefined>(undefined);
 
 const generateId = () => crypto.randomUUID();
 
-const MOCK_TOAST_DATA: ToastData[] = [
-  { id: '1', variant: 'notice', message: 'Example notice toast' },
-  { id: '2', variant: 'error', message: 'Example error toast' },
-];
 interface ProviderProps {
   children: React.ReactNode;
 }
 
 export function Provider({ children }: ProviderProps): React.ReactElement {
-  const [toasts, setToasts] = React.useState<ToastData[]>(MOCK_TOAST_DATA);
+  const [toasts, setToasts] = React.useState<ToastData[]>([]);
 
   const addToast = (toast: Omit<ToastData, 'id'>) => {
     const newToast: ToastData = {
