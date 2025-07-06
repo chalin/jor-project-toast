@@ -6,9 +6,26 @@ import { type Variant, VARIANT_OPTIONS } from '../Toast';
 
 import * as styles from './ToastPlayground.module.css';
 
+const defaultVariant = 'notice';
+
 function ToastPlayground(): React.ReactElement {
   const [message, setMessage] = React.useState('');
-  const [variant, setVariant] = React.useState<Variant>('notice');
+  const [variant, setVariant] = React.useState<Variant>(defaultVariant);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (message.trim() === '') {
+      alert('Please enter a message for the toast.');
+      return;
+    }
+    // Here you would typically call a function to add the toast
+    // For example: addToast({ message, variant });
+    console.log(`Toast added with message: "${message}" and variant: "${variant}"`);
+
+    // Reset the form state
+    setVariant(defaultVariant);
+    setMessage('');
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -19,22 +36,23 @@ function ToastPlayground(): React.ReactElement {
 
       <ToastShelf />
 
-      <div className={styles.controlsWrapper}>
-        <div className={styles.row}>
-          <MessageInput message={message} setMessage={setMessage} />
-        </div>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.controlsWrapper}>
+          <div className={styles.row}>
+            <MessageInput message={message} setMessage={setMessage} />
+          </div>
 
-        <div className={styles.row}>
-          <VariantsInput variant={variant} setVariant={setVariant} />
-        </div>
+          <div className={styles.row}>
+            <VariantsInput variant={variant} setVariant={setVariant} />
+          </div>
 
-        <div className={styles.row}>
-          <div className={styles.label} />
-          <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button>Pop Toast!</Button>
+          <div className={styles.row}>
+            <div className={styles.label} />
+            <Button type="submit">Pop Toast!</Button>
           </div>
         </div>
-      </div>
+      </form>
+
     </div>
   );
 }
