@@ -18,6 +18,19 @@ const Context = React.createContext<ContextType | undefined>(undefined);
 
 const generateId = () => crypto.randomUUID();
 
+function useEscape(onEscape: () => void) {
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onEscape();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [onEscape]);
+}
+
 interface ProviderProps {
   children: React.ReactNode;
 }
@@ -36,6 +49,12 @@ export function Provider({ children }: ProviderProps): React.ReactElement {
   const dismissToast = (id: string) => {
     setToasts((_) => _.filter((toast) => toast.id !== id));
   };
+
+  const dismissAllToasts = React.useCallback(() => {
+    setToasts([]);
+  }, []);
+
+  useEscape(dismissAllToasts);
 
   const value: ContextType = {
     toasts,
