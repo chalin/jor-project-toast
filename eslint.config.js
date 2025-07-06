@@ -47,7 +47,10 @@ export default [
 
       // TypeScript-specific rules
       ...tseslint.configs.recommended.rules,
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
 
       // General code quality
       'no-unused-vars': 'off', // Turn off base rule as it conflicts with TypeScript

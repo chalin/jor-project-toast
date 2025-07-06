@@ -31,7 +31,7 @@
     "check:types": "tsc --noEmit",
     "check": "npm run check:types && npm run lint",
     "dev": "parcel public/index.html",
-    "format": "prettier --write .",
+    "fix:format": "prettier --write .",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "new-component": "new-component",
     "predev": "rimraf .parcel-cache dist",
