@@ -11,6 +11,9 @@ import VisuallyHidden from '../VisuallyHidden';
 
 import * as styles from './Toast.module.css';
 
+const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
+export type Variant = (typeof VARIANT_OPTIONS)[number];
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ICONS_BY_VARIANT = {
   notice: Info,
@@ -21,7 +24,7 @@ const ICONS_BY_VARIANT = {
 
 interface ToastProps {
   children: React.ReactNode;
-  variant?: 'notice' | 'warning' | 'success' | 'error';
+  variant?: Variant;
 }
 
 function Toast({
@@ -44,4 +47,5 @@ function Toast({
   );
 }
 
+export { VARIANT_OPTIONS };
 export default Toast;

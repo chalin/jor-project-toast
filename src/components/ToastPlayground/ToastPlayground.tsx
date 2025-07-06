@@ -1,14 +1,13 @@
 import React from 'react';
 
 import Button from '../Button';
+import { Variant, VARIANT_OPTIONS } from '../Toast';
 
 import * as styles from './ToastPlayground.module.css';
 
-const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'] as const;
-
 function ToastPlayground(): React.ReactElement {
   const [message, setMessage] = React.useState('');
-  const [variant, setVariant] = React.useState('notice');
+  const [variant, setVariant] = React.useState<Variant>('notice');
 
   return (
     <div className={styles.wrapper}>
@@ -19,17 +18,11 @@ function ToastPlayground(): React.ReactElement {
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
-          <MessageInput
-            message={message}
-            setMessage={setMessage}
-          />
+          <MessageInput message={message} setMessage={setMessage} />
         </div>
 
         <div className={styles.row}>
-          <VariantsInput
-            variant={variant}
-            setVariant={setVariant}
-          />
+          <VariantsInput variant={variant} setVariant={setVariant} />
         </div>
 
         <div className={styles.row}>
@@ -75,8 +68,8 @@ function VariantsInput({
   variant,
   setVariant,
 }: {
-  variant: string;
-  setVariant: (variant: string) => void;
+  variant: Variant;
+  setVariant: (variant: Variant) => void;
 }) {
   return (
     <>
