@@ -5,22 +5,22 @@ import ToastShelf from '../ToastShelf';
 import { type Variant, VARIANT_OPTIONS } from '../Toast';
 
 import * as styles from './ToastPlayground.module.css';
+import { useToastShelf } from '../ToastShelf/Provider';
 
 const defaultVariant = 'notice';
 
 function ToastPlayground(): React.ReactElement {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState<Variant>(defaultVariant);
-
+  const { addToast } = useToastShelf();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (message.trim() === '') {
       alert('Please enter a message for the toast.');
       return;
     }
-    // Here you would typically call a function to add the toast
-    // For example: addToast({ message, variant });
-    console.log(`Toast added with message: "${message}" and variant: "${variant}"`);
+
+    addToast({ message, variant });
 
     // Reset the form state
     setVariant(defaultVariant);
@@ -52,7 +52,6 @@ function ToastPlayground(): React.ReactElement {
           </div>
         </div>
       </form>
-
     </div>
   );
 }
