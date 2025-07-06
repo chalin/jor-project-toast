@@ -25,21 +25,23 @@ const ICONS_BY_VARIANT = {
 interface ToastProps {
   children: React.ReactNode;
   variant?: Variant;
+  setVisible: (visible: boolean) => void;
 }
 
 function Toast({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   children,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   variant = 'notice',
+  setVisible,
 }: ToastProps): React.ReactElement {
+  const Icon = ICONS_BY_VARIANT[variant];
+
   return (
-    <div className={`${styles.toast} ${styles.notice}`}>
+    <div className={`${styles.toast} ${styles[variant]}`}>
       <div className={styles.iconContainer}>
-        <Info size={24} />
+        <Icon size={24} />
       </div>
-      <p className={styles.content}>16 photos have been uploaded</p>
-      <button className={styles.closeButton}>
+      <div className={styles.content}>{children}</div>
+      <button className={styles.closeButton} onClick={() => setVisible(false)}>
         <X size={24} />
         <VisuallyHidden>Dismiss message</VisuallyHidden>
       </button>

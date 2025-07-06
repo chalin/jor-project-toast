@@ -1,13 +1,14 @@
 import React from 'react';
 
 import Button from '../Button';
-import { Variant, VARIANT_OPTIONS } from '../Toast';
+import Toast, { type Variant, VARIANT_OPTIONS } from '../Toast';
 
 import * as styles from './ToastPlayground.module.css';
 
 function ToastPlayground(): React.ReactElement {
   const [message, setMessage] = React.useState('');
   const [variant, setVariant] = React.useState<Variant>('notice');
+  const [isToastVisible, setIsToastVisible] = React.useState(false);
 
   return (
     <div className={styles.wrapper}>
@@ -15,6 +16,12 @@ function ToastPlayground(): React.ReactElement {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
+
+      {isToastVisible && (
+        <Toast variant={variant} setVisible={setIsToastVisible}>
+          {message}
+        </Toast>
+      )}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
@@ -28,7 +35,7 @@ function ToastPlayground(): React.ReactElement {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button>Pop Toast!</Button>
+            <Button onClick={() => setIsToastVisible(true)}>Pop Toast!</Button>
           </div>
         </div>
       </div>
